@@ -1,1 +1,1 @@
-#define INPUT_STAGE_VER "v1.0.0"
+#define INPUT_STAGE_VER "v1.0.1"

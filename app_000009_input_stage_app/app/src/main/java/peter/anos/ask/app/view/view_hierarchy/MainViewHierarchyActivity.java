@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -55,12 +56,25 @@ public class MainViewHierarchyActivity extends Activity {
         }
     }
 
+    class MyButtonTouchListener implements View.OnTouchListener {
+
+        @Override
+        public boolean onTouch(View v, MotionEvent event) {
+            Log.i(TAG, "******** MyButtonTouchListener onTouch  call strace *******");
+            Log.i(TAG,Log.getStackTraceString(new Throwable()));
+            return false;
+        }
+    }
+
     class MyButtionViewListener implements View.OnClickListener {
         @Override
         public void onClick(View v) {
             Log.i(TAG, " MyButtionViewListener onClick");
-            View decorView = getWindow().getDecorView();
-            printViewHierarchy(decorView, 0, -1);
+            // View decorView = getWindow().getDecorView();
+            // printViewHierarchy(decorView, 0, -1);
+
+            Log.i(TAG, "******** MyButtionViewListener onClick  call strace *******");
+            Log.i(TAG,Log.getStackTraceString(new Throwable()));
         }
     }
 
@@ -106,6 +120,8 @@ public class MainViewHierarchyActivity extends Activity {
 
         mButton = findViewById(R.id.button);
         mButton.setOnClickListener(new MyButtionViewListener());
+
+        mButton.setOnTouchListener(new MyButtonTouchListener());
 
         Log.i(TAG, "**************************");
     }
